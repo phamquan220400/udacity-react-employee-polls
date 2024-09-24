@@ -6,3 +6,5 @@ const store = configureStore({
     reducer: rootReducer,
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(authMiddleware),
 });
+
+export default store;
