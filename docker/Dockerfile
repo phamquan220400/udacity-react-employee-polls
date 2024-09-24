@@ -1,11 +1,11 @@
 FROM node:22
 LABEL authors="Quan Pham Van"
 
-ENV root-app="/var/www/employee-roll"
+ENV root_app="/var/www/employee-roll"
 
-WORKDIR $root-app
+WORKDIR $root_app
 
 COPY . .
-
-EXPOSE 3001
+RUN npm install
+EXPOSE 3000
 ENTRYPOINT ["npm", "start"]

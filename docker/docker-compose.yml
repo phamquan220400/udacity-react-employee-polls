@@ -8,7 +8,7 @@ services:
     ports:
       - "3000:3000" # Maps container port 3000 to host port 3000
     volumes:
-      - ../:/usr/src/app # Mounts the current directory on the host to /usr/src/app in the container
+      - ../:/var/www/employee-roll # Mounts the current directory on the host to /usr/src/app in the container
       - /usr/src/app/node_modules # Prevents overwriting node_modules with the volume
     environment:
       - NODE_ENV=development
