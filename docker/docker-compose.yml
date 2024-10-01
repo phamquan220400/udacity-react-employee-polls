@@ -6,9 +6,11 @@ services:
       context: ../
       dockerfile: docker/Dockerfile
     ports:
-      - "3000:3000" # Maps container port 3000 to host port 3000
+      - "3000:3000"
     volumes:
-      - ../:/var/www/employee-roll # Mounts the current directory on the host to /usr/src/app in the container
-      - ../node_modules:/var/www/employee-roll/node_modules # Prevents overwriting node_modules with the volume
+      - ../:/var/www/employee-roll
+      - ../node_modules:/var/www/employee-roll/node_modules
+      - ../package.json:/var/www/employee-roll/package.json
+      - ../package-lock.json:/var/www/employee-roll/package-lock.json
     environment:
       - NODE_ENV=development
