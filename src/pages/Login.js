@@ -1,8 +1,9 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {setAuth} from "../store/action/authAction";
 import {useLocation, useNavigate} from "react-router-dom";
 import * as API from "../_DATA"
+
 const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -11,9 +12,9 @@ const Login = () => {
     const dispatch = useDispatch();
     const auth = useSelector(state => state.auth);
     const navigate = useNavigate();
-    const {state} = useLocation();
+    const { state } = useLocation();
+
     const handleLogin = (e) => {
-        debugger
         e.preventDefault();
         setError('');
         if(!username) {
@@ -28,19 +29,25 @@ const Login = () => {
         API.login({username, password}).then(res =>{
             if(res && res.data){
                 dispatch(setAuth(res.data))
-                navigate('/home');
+                localStorage.setItem('user', JSON.stringify(res.data));
+                navigate(state.from.pathName ?? '/home');
             }
         }).catch(error => {
             setError(error);
-            console.log(error);
         });
     };
+
+    useEffect(() => {
+        if(auth && auth.user){
+            navigate("/home");
+        }
+    }, [auth, navigate]);
 
     return (
         <div className="container mt-5">
             <h1 className="text-center">Login Page</h1>
             <div className="row justify-content-center">
-                {/*<small className="text-danger">{error}</small>*/}
+                <h3 className="text-danger row justify-content-center">{error}</h3>
                 <div className="col-md-4">
                     <form>
                         <div className="form-group mt-2">
