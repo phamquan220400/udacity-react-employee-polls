@@ -1,7 +1,7 @@
 let users = {
-  user: {
-    id: 'user',
-    password:'1',
+  sarahedo: {
+    id: 'sarahedo',
+    password:'password123',
     name: 'Sarah Edo',
     avatarURL: null,
     answers: {
@@ -34,26 +34,16 @@ let users = {
       "6ni6ok3ym7mf1p33lnez": 'optionOne'
     },
     questions: ['6ni6ok3ym7mf1p33lnez', 'xj352vofupe1dqz9emx13r'],
-  },
-  zoshikanlu: {
-    id: 'zoshikanlu',
-    password:'pass246',
-    name: 'Zenobia Oshikanlu',
-    avatarURL: null,
-    answers: {
-      "xj352vofupe1dqz9emx13r": 'optionOne',
-    },
-    questions: [],
   }
 }
 
 let questions = {
   "8xf0y6ziyjabvozdd253nd": {
     id: '8xf0y6ziyjabvozdd253nd',
-    author: 'user',
+    author: 'sarahedo',
     timestamp: 1467166872634,
     optionOne: {
-      votes: ['user'],
+      votes: ['sarahedo'],
       text: 'Build our new application with Javascript',
     },
     optionTwo: {
@@ -70,20 +60,20 @@ let questions = {
       text: 'hire more frontend developers',
     },
     optionTwo: {
-      votes: ['mtsamis', 'user'],
+      votes: ['mtsamis', 'sarahedo'],
       text: 'hire more backend developers'
     }
   },
   "am8ehyc8byjqgar0jgpub9": {
     id: 'am8ehyc8byjqgar0jgpub9',
-    author: 'user',
+    author: 'sarahedo',
     timestamp: 1488579767190,
     optionOne: {
       votes: [],
       text: 'conduct a release retrospective 1 week after a release',
     },
     optionTwo: {
-      votes: ['user'],
+      votes: ['sarahedo'],
       text: 'conduct release retrospectives quarterly'
     }
   },
@@ -96,7 +86,7 @@ let questions = {
       text: 'have code reviews conducted by peers',
     },
     optionTwo: {
-      votes: ['user'],
+      votes: ['sarahedo'],
       text: 'have code reviews conducted by managers'
     }
   },
@@ -118,7 +108,7 @@ let questions = {
     author: 'mtsamis',
     timestamp: 1493579767190,
     optionOne: {
-      votes: ['mtsamis', 'zoshikanlu'],
+      votes: ['mtsamis'],
       text: 'deploy to production once every two weeks',
     },
     optionTwo: {
@@ -213,17 +203,17 @@ export function _saveQuestionAnswer ({ authedUser, qid, answer }) {
 }
 
 export function login(req) {
-    return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                if (Object.keys(users).includes(req.username)) {
-                    const userData = users[req.username];
-                    if (userData.password !== req.password) {
-                        reject('Wrong password. Please try again!')
-                    }
-                    return resolve({data:userData});
-                }
-                return reject('User does not exist');
-            }, 500)
-        }
-    );
+  return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          if (Object.keys(users).includes(req.username)) {
+            const userData = users[req.username];
+            if (userData.password !== req.password) {
+              reject('Wrong password. Please try again!')
+            }
+            return resolve({data:userData});
+          }
+          return reject('User does not exist');
+        }, 500)
+      }
+  );
 }
