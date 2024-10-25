@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {useSelector} from "react-redux";
 
 const userSelect = state => state.user;
-const LeaderBoard = (props) => {
+const LeaderBoard = () => {
     const [userList, setUserList] = useState([]);
     const users = useSelector(userSelect);
     useEffect(() => {

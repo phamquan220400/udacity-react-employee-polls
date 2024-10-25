@@ -12,22 +12,22 @@ const Login = () => {
     const dispatch = useDispatch();
     const auth = useSelector(state => state.auth);
     const navigate = useNavigate();
-    const { state } = useLocation();
+    const {state} = useLocation();
 
     const handleLogin = (e) => {
         e.preventDefault();
         setError('');
-        if(!username) {
+        if (!username) {
             setError('Username must have value');
             return;
         }
-        if(!password) {
+        if (!password) {
             setError('Password must have value');
             return;
         }
 
-        API.login({username, password}).then(res =>{
-            if(res && res.data){
+        API.login({username, password}).then(res => {
+            if (res && res.data) {
                 dispatch(setAuth(res.data))
                 localStorage.setItem('user', JSON.stringify(res.data));
                 navigate(state.from.pathName ?? '/home');
@@ -38,7 +38,7 @@ const Login = () => {
     };
 
     useEffect(() => {
-        if(auth && auth.user){
+        if (auth && auth.user) {
             navigate("/home");
         }
     }, [auth, navigate]);
@@ -55,7 +55,7 @@ const Login = () => {
                             <input
                                 type="text"
                                 className="form-control"
-                                id="username"
+                                data-testid="username"
                                 placeholder="Enter username"
                                 value={username}
                                 onChange={(e) => setUsername(e.target.value)}
@@ -66,13 +66,17 @@ const Login = () => {
                             <input
                                 type="password"
                                 className="form-control"
-                                id="password"
+                                data-testid="password"
                                 placeholder="Enter password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                             />
                         </div>
-                        <button  onClick={handleLogin} type="submit" className="btn btn-primary btn-block mt-2">
+                        <button
+                            onClick={handleLogin}
+                            type="submit"
+                            className="btn btn-primary btn-block mt-2"
+                        >
                             Sign In
                         </button>
                     </form>

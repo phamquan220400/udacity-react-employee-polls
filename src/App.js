@@ -10,6 +10,7 @@ import NewQuestion from "./pages/NewQuestion";
 import * as data from "./_DATA";
 import * as userAction from "./store/action/userActions";
 import * as questionAction from "./store/action/questionAction";
+import QuestionDetail from "./pages/QuestionDetail";
 
 const questionSelector = (state) => state.question;
 const userSelector = (state) => state.user;
@@ -61,6 +62,7 @@ function App() {
                 <Route path="/home" element={<HomePage/>}/>
                 <Route path="/leaderboard" element={<LeaderBoard/>}/>
                 <Route path="/new" element={<NewQuestion/>}/>
+                <Route path="/question/:questionId" element={<QuestionDetail/>}/>
             </Route>
         </Routes>
     );

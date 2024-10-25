@@ -9,7 +9,7 @@ const authSelect = (state) => state.auth;
 const userSelect = (state) => state.user;
 const questionSelect = (state) => state.question;
 
-const NewQuestion = (props) => {
+const NewQuestion = () => {
     const [message, setMessage] = useState("");
     const [firstOption, setFirstOption] = useState();
     const [secondOption, setSecondOption] = useState();
@@ -61,7 +61,7 @@ const NewQuestion = (props) => {
                     <label className="form-label" form="firstOption">Option 1</label>
                     <input type="text"
                            className="form-control"
-                           id="firstOption"
+                           data-testid="FirstOption"
                            placeholder="First Option"
                            onChange={e => setFirstOption(e.target.value)}
                     />
@@ -70,7 +70,7 @@ const NewQuestion = (props) => {
                     <label className="form-label" form="secondOption">Option 2</label>
                     <input type="text"
                            className="form-control"
-                           id="secondOption"
+                           data-testid="SecondOption"
                            placeholder="Second Option"
                            onChange={e => setSecondOption(e.target.value)}
                     />
