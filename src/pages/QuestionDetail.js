@@ -51,8 +51,8 @@ const QuestionDetail = () => {
                         [answer]: {
                             ...questions[question.id][answer],
                             votes: questions[question.id][answer].votes.concat([auth.user.id]),
-                        }
-                    }
+                        },
+                    },
                 };
                 const newAnsweredUser = {
                     ...user,
@@ -61,8 +61,8 @@ const QuestionDetail = () => {
                         answers: {
                             ...user[auth.user.id].answers,
                             [question.id]: answer
-                        }
-                    }
+                        },
+                    },
                 };
                 dispatch(questionAction(newAnsweredQuestion));
                 dispatch(userAction(newAnsweredUser));

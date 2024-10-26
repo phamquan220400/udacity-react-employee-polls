@@ -64,8 +64,8 @@ function App() {
                 <Route exact path="/leaderboard" element={<LeaderBoard/>}/>
                 <Route exact path="/new" element={<NewQuestion/>}/>
                 <Route exact path="/question/:questionId" element={<QuestionDetail/>}/>
-                <Route path="*" element={<NotFound/>}/>
             </Route>
+            <Route path="*" element={<NotFound/>}/>
         </Routes>
     );
 }

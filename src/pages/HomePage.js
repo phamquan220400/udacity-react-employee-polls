@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from "react";
 import {useSelector} from "react-redux";
 import QuestionList from "../components/QuestionList";
+import {Tab} from "react-bootstrap";
+import {Tabs} from "react-bootstrap";
 
 const authSelector = (state) => state.auth;
 const questionSelector = (state) => state.question;
@@ -18,26 +20,40 @@ const HomePage = () => {
             if (
                 questions[key].optionOne.votes.includes(auth.user.id)
                 || questions[key].optionOne.votes.includes(auth.user.id)
+                || Object.keys(auth.user.answers).includes(key)
             ) {
                 completedList.push(questions[key]);
             } else {
                 notCompletedList.push(questions[key]);
             }
         });
-
         setNotCompleteQuestions(notCompletedList);
         setCompleteQuestions(completedList);
     }, []);
     return (
-        <div>
-            <QuestionList
-                listTitle="Upcoming Question"
-                questionList={notCompleteQuestions.sort((a, b) => a.timestamp - b.timestamp)}
-            />
-            <QuestionList
-                listTitle="Completed Question"
-                questionList={completeQuestions.sort((a, b) => a.timestamp - b.timestamp)}
-            />
+        <div className="mt-4">
+            <Tabs defaultActiveKey="upcoming" id="uncontrolled-tab-example" className="mb-3">
+                <Tab eventKey="upcoming" title="Upcoming Questions">
+                    <div className="upcoming">
+                        <div className="upcoming">
+                            <QuestionList
+                                listTitle="Upcoming Question"
+                                questionList={notCompleteQuestions.sort((a, b) => a.timestamp - b.timestamp)}
+                            />
+                        </div>
+                        {} </div>
+                </Tab>
+                <Tab eventKey="completed" title="Completed Questions">
+                    <div className="completed">
+                        <div className="completed">
+                            <QuestionList
+                                listTitle="Completed Question"
+                                questionList={completeQuestions.sort((a, b) => a.timestamp - b.timestamp)}
+                            />
+                        </div>
+                    </div>
+                </Tab>
+            </Tabs>
         </div>
     );
 }

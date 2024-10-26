@@ -6,17 +6,26 @@ const LeaderBoard = () => {
     const [userList, setUserList] = useState([]);
     const users = useSelector(userSelect);
     useEffect(() => {
-        let userListData = [];
-        Object.keys(users).forEach(key => {
-            let user = users[key];
-            user.sortData = user.questions.length + Object.keys(user.answers).length;
-            userListData.push(user);
-        })
-        setUserList(userListData)
-        userListData.sort((a,b) => b.sortData - a.sortData)
+        if (users) {
+            let userListData = [];
+            Object.keys(users).forEach(key => {
+                let user = users[key];
+                userListData.push(user);
+                userListData.sort((a, b) => {
+                    const aDataSort = Object.keys(a.answers).length + a.questions.length;
+                    const bDataSort = Object.keys(b.answers).length + b.questions.length;
+                    if (aDataSort > bDataSort) {
+                        return -1;
+                    } else {
+                        return 1
+                    }
+                });
+            })
+            setUserList(userListData)
+        }
     }, []);
     return (
-        <table className="table text-center" >
+        <table className="table text-center">
             <thead>
             <tr>
                 <th scope="col">User</th>
