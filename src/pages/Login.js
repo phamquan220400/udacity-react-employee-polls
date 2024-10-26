@@ -29,8 +29,7 @@ const Login = () => {
         API.login({username, password}).then(res => {
             if (res && res.data) {
                 dispatch(setAuth(res.data))
-                localStorage.setItem('user', JSON.stringify(res.data));
-                navigate(state.from.pathName ?? '/home');
+                navigate(state.from.pathname ?? '/home');
             }
         }).catch(error => {
             setError(error);
@@ -41,7 +40,7 @@ const Login = () => {
         if (auth && auth.user) {
             navigate("/home");
         }
-    }, [auth, navigate]);
+    }, []);
 
     return (
         <div className="container mt-5">

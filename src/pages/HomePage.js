@@ -23,6 +23,7 @@ const HomePage = () => {
                 || Object.keys(auth.user.answers).includes(key)
             ) {
                 completedList.push(questions[key]);
+
             } else {
                 notCompletedList.push(questions[key]);
             }
@@ -43,7 +44,7 @@ const HomePage = () => {
                                     :
                                     <QuestionList
                                         listTitle="Upcoming Question"
-                                        questionList={notCompleteQuestions.sort((a, b) => a.timestamp - b.timestamp)}
+                                        questionList={notCompleteQuestions.sort((a, b) => b.timestamp - a.timestamp)}
                                     />
                             }
                         </div>
@@ -58,7 +59,7 @@ const HomePage = () => {
                                     <h3>You did not answered any poll</h3>
                                     : <QuestionList
                                         listTitle="Completed Question"
-                                        questionList={completeQuestions.sort((a, b) => a.timestamp - b.timestamp)}
+                                        questionList={completeQuestions.sort((a, b) => b.timestamp - a.timestamp)}
                                     />
                             }
                         </div>

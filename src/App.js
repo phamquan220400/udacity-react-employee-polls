@@ -66,6 +66,7 @@ function App() {
                 <Route exact path="/question/:questionId" element={<QuestionDetail/>}/>
             </Route>
             <Route path="*" element={<NotFound/>}/>
+            <Route path="/login" element={<Login/>}/>
         </Routes>
     );
 }

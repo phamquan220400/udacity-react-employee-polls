@@ -2,7 +2,7 @@ import React from "react";
 import {Link} from "react-router-dom";
 
 const QuestionCard = (props) => {
-    let data = props.data;
+    let {data} = props;
     const time = (time) => {
         const date = new Date(time);
         return date.toLocaleTimeString() + ' | ' + date.toLocaleDateString();

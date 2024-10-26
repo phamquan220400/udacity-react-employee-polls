@@ -46,4 +46,41 @@ describe("Render login page", () => {
         expect(username.value).toBe("firstData");
         expect(password.value).toBe("secondData");
     });
+
+    test("should render right user data", async () => {
+        render(
+            <BrowserRouter>
+                <Provider store={store}>
+                    <Login/>
+                </Provider>
+            </BrowserRouter>
+        )
+
+        let username = await screen.findByTestId("username");
+        fireEvent.change(username, {
+            target: {
+                value: "firstData"
+            }
+        });
+
+        expect(username.value).toBe("firstData");
+    });
+    test("should render right password data", async () => {
+        render(
+            <BrowserRouter>
+                <Provider store={store}>
+                    <Login/>
+                </Provider>
+            </BrowserRouter>
+        )
+
+        let password = await screen.findByTestId("password");
+        fireEvent.change(password, {
+            target: {
+                value: "firstData"
+            }
+        });
+
+        expect(password.value).toBe("firstData");
+    });
 });
