@@ -36,20 +36,31 @@ const HomePage = () => {
                 <Tab eventKey="upcoming" title="Upcoming Questions">
                     <div className="upcoming">
                         <div className="upcoming">
-                            <QuestionList
-                                listTitle="Upcoming Question"
-                                questionList={notCompleteQuestions.sort((a, b) => a.timestamp - b.timestamp)}
-                            />
+                            {
+                                (notCompleteQuestions.length == 0)
+                                    ?
+                                    <h3>You answered all poll</h3>
+                                    :
+                                    <QuestionList
+                                        listTitle="Upcoming Question"
+                                        questionList={notCompleteQuestions.sort((a, b) => a.timestamp - b.timestamp)}
+                                    />
+                            }
                         </div>
                         {} </div>
                 </Tab>
                 <Tab eventKey="completed" title="Completed Questions">
                     <div className="completed">
                         <div className="completed">
-                            <QuestionList
-                                listTitle="Completed Question"
-                                questionList={completeQuestions.sort((a, b) => a.timestamp - b.timestamp)}
-                            />
+                            {
+                                (completeQuestions.length == 0)
+                                    ?
+                                    <h3>You did not answered any poll</h3>
+                                    : <QuestionList
+                                        listTitle="Completed Question"
+                                        questionList={completeQuestions.sort((a, b) => a.timestamp - b.timestamp)}
+                                    />
+                            }
                         </div>
                     </div>
                 </Tab>
