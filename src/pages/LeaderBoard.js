@@ -8,9 +8,12 @@ const LeaderBoard = () => {
     useEffect(() => {
         let userListData = [];
         Object.keys(users).forEach(key => {
-            userListData.push(users[key]);
+            let user = users[key];
+            user.sortData = user.questions.length + Object.keys(user.answers).length;
+            userListData.push(user);
         })
         setUserList(userListData)
+        userListData.sort((a,b) => b.sortData - a.sortData)
     }, []);
     return (
         <table className="table text-center" >

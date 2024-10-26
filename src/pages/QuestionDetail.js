@@ -24,10 +24,14 @@ const QuestionDetail = () => {
     }, []);
 
     const getVoted = () => {
-        if (question.optionOne.votes.includes(auth.user.id)) {
-            return question.optionOne.text;
-        } else if (question.optionTwo.votes.includes(auth.user.id)) {
-            return question.optionTwo.text;
+        if (question.optionOne.votes.includes(auth.user.id)
+            || question.optionTwo.votes.includes(auth.user.id)) {
+            if (question.optionOne.votes.includes(auth.user.id)) {
+                return question.optionOne.text;
+            }
+            if (question.optionTwo.votes.includes(auth.user.id)) {
+                return question.optionTwo.text;
+            }
         } else {
             return null;
         }
@@ -73,11 +77,12 @@ const QuestionDetail = () => {
             {question && Object.keys(question).length > 0 ?
                 (<div>
                     <div className="px-4 py-5 my-5 text-center">
-                        <h1 className="display-5 fw-bold text-body-emphasis"> Poll by {auth.name}{" "} </h1>
+                        <h2>Would You Rather</h2>
+                        <h3 className="display-5 fw-bold text-body-emphasis"> Poll by {auth.name}{" "} </h3>
                         <img
-                            className="d-block mx-auto mb-4 rounded-circle"
-                            src={auth.avatarURL}
-                            alt={auth.name} width="128" height="128"
+                            className="d-block mx-auto mb-4 rounded-circle bg-primary"
+                            src={user[question.author].avatarURL}
+                            alt={user[question.author].name} width="128" height="128"
                         />
                         <div className="col-lg-6 mx-auto">
                             {!getVoted() ?

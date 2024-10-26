@@ -1,17 +1,17 @@
-import Login from "./Login";
+import NewQuestion from "./NewQuestion";
 import {fireEvent, render, screen} from "@testing-library/react";
 import {BrowserRouter} from "react-router-dom";
 import {Provider} from "react-redux";
 import {store} from "../store";
 import {PersistGate} from "redux-persist/integration/react";
 
-describe("Render login page", () => {
+describe("Render New Question Page success", () => {
     test("should render '<New Question/>'", () => {
         const view = render(
             <BrowserRouter>
                 <Provider store={store}>
                     <PersistGate loading={null} persistor={store}>
-                        <Login/>
+                        <NewQuestion/>
                     </PersistGate>
                 </Provider>
             </BrowserRouter>
@@ -24,26 +24,27 @@ describe("Render login page", () => {
         render(
             <BrowserRouter>
                 <Provider store={store}>
-                    <Login/>
+                        <NewQuestion/>
                 </Provider>
             </BrowserRouter>
         )
 
-        let username = await screen.findByTestId("username");
-        let password = await screen.findByTestId("password");
-        fireEvent.change(username, {
-            target: {
-                value: "firstData"
-            }
-        });
-        fireEvent.change(password,
+        const firstOptionData = await screen.findByTestId("FirstOption");
+        const secondOptionData = await screen.findByTestId("SecondOption");
+
+        fireEvent.change(firstOptionData,
+            {
+                target: {
+                    value: "firstData"
+                }
+            });
+        fireEvent.change(secondOptionData,
             {
                 target: {
                     value: "secondData"
                 }
             });
-
-        expect(username.value).toBe("firstData");
-        expect(password.value).toBe("secondData");
+        expect(firstOptionData.value).toBe("firstData");
+        expect(secondOptionData.value).toBe("secondData");
     });
-});
+})

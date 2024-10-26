@@ -1,3 +1,19 @@
+
+## How to run
+Run these following commands in project root directory <br/>
+
+To install all dependencies
+```shell
+npm install
+```
+To start project
+```shell
+npm start
+```
+To test project
+```shell
+npm test
+```
 # Employee Polls Project
 
 This is the starter code for the final assessment project for Udacity's React & Redux course.
@@ -96,3 +112,61 @@ Your code will talk to the database via 4 methods:
 | qid | String | The id of the question that was answered|
 | answer | String | The option the user selected. The value should be either `"optionOne"` or `"optionTwo"`|
 
+##Project structure
+```
+.
+├── CODEOWNERS
+├── LICENSE.txt
+├── README.md
+├── package-lock.json
+├── package.json
+├── public
+│   ├── favicon.ico
+│   ├── index.html
+│   ├── logo192.png
+│   ├── logo512.png
+│   ├── manifest.json
+│   └── robots.txt
+└── src
+    ├── App.css
+    ├── App.js
+    ├── App.test.js
+    ├── _DATA.js
+    ├── _DATA.test.js
+    ├── components
+    │   ├── QuestionCard.js
+    │   └── QuestionList.js
+    ├── index.css
+    ├── index.js
+    ├── logo.svg
+    ├── pages
+    │   ├── HomePage.js
+    │   ├── LeaderBoard.js
+    │   ├── Login.js
+    │   ├── Login.test.js
+    │   ├── Menu.js
+    │   ├── NewQuestion.js
+    │   ├── NewQuestion.test.js
+    │   ├── NotFound.js
+    │   ├── QuestionDetail.js
+    │   └── __snapshots__
+    │       ├── Login.test.js.snap
+    │       └── NewQuestion.test.js.snap
+    ├── reportWebVitals.js
+    ├── setupTests.js
+    └── store
+        ├── action
+        │   ├── authAction.js
+        │   ├── questionAction.js
+        │   └── userActions.js
+        ├── index.js
+        ├── middleware
+        │   └── authMiddleware.js
+        ├── reducer
+        │   ├── authReducer.js
+        │   ├── combine.js
+        │   ├── questionReducer.js
+        │   └── userReducer.js
+        └── store.js
+
+```

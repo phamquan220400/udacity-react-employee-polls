@@ -7,10 +7,11 @@ import HomePage from "./pages/HomePage";
 import Menu from "./pages/Menu";
 import LeaderBoard from "./pages/LeaderBoard";
 import NewQuestion from "./pages/NewQuestion";
-import * as data from "./_DATA";
+import {_getUsers, _getQuestions} from "./_DATA";
 import * as userAction from "./store/action/userActions";
 import * as questionAction from "./store/action/questionAction";
 import QuestionDetail from "./pages/QuestionDetail";
+import NotFound from "./pages/NotFound";
 
 const questionSelector = (state) => state.question;
 const userSelector = (state) => state.user;
@@ -37,13 +38,13 @@ function App() {
 
     const initData = async () => {
         if (!questionState) {
-            const question = await data._getQuestions();
+            const question = await _getQuestions();
             if (question) {
                 dispatch(questionAction.setQuestion(question));
             }
         }
         if (!userState) {
-            const user = await data._getUsers();
+            const user = await _getUsers();
             if (user) {
                 dispatch(userAction.setUser(user));
             }
@@ -56,13 +57,14 @@ function App() {
     return (
         <Routes>
             <Route path="/" element={<Login/>}>
-                {""}
+                {" "}
             </Route>
             <Route element={<Auth/>}>
-                <Route path="/home" element={<HomePage/>}/>
-                <Route path="/leaderboard" element={<LeaderBoard/>}/>
-                <Route path="/new" element={<NewQuestion/>}/>
-                <Route path="/question/:questionId" element={<QuestionDetail/>}/>
+                <Route exact path="/home" element={<HomePage/>}/>
+                <Route exact path="/leaderboard" element={<LeaderBoard/>}/>
+                <Route exact path="/new" element={<NewQuestion/>}/>
+                <Route exact path="/question/:questionId" element={<QuestionDetail/>}/>
+                <Route path="*" element={<NotFound/>}/>
             </Route>
         </Routes>
     );

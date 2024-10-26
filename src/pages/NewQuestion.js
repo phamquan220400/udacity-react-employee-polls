@@ -31,7 +31,6 @@ const NewQuestion = () => {
         };
         save(questionSaveData)
             .then(res => {
-                debugger
                 if (res) {
                     const newQuestion = {...question, [res.id]: res};
                     dispatch(setQuestion(newQuestion));
