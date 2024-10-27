@@ -22,15 +22,15 @@ const QuestionDetail = () => {
     useEffect(() => {
         setQuestion(questions[questionId]);
     }, []);
-
+    const sumOfVotes = question?.optionOne?.votes?.length + question?.optionTwo?.votes?.length;
     const getVoted = () => {
         if (question.optionOne.votes.includes(auth.user.id)
             || question.optionTwo.votes.includes(auth.user.id)) {
             if (question.optionOne.votes.includes(auth.user.id)) {
-                return question.optionOne.text;
+                return question?.optionOne;
             }
             if (question.optionTwo.votes.includes(auth.user.id)) {
-                return question.optionTwo.text;
+                return question?.optionTwo;
             }
         } else {
             return null;
@@ -110,7 +110,10 @@ const QuestionDetail = () => {
                                 (
                                     <div className="answered-question row flex-row justify-content-center">
                                         <h4 className="col">You already answered this question.</h4>
-                                        <div className="btn btn-success disabled row p-3">{getVoted()}</div>
+                                        <div className="btn btn-success disabled row p-3">{getVoted().text}</div>
+                                        <p>Number of user voted this option: {getVoted()?.votes?.length}</p>
+                                        <p>Percentage of this
+                                            option: {(getVoted()?.votes?.length / sumOfVotes * 100).toFixed(2)}%</p>
                                         <button
                                             className="col-2 btn btn-primary mt-2"
                                             onClick={() => navigate(-1)}
