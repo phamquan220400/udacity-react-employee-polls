@@ -38,7 +38,7 @@ const HomePage = () => {
                     <div className="upcoming">
                         <div className="upcoming">
                             {
-                                (notCompleteQuestions.length == 0)
+                                notCompleteQuestions.length === 0
                                     ?
                                     <h3>You answered all poll</h3>
                                     :
@@ -54,7 +54,7 @@ const HomePage = () => {
                     <div className="completed">
                         <div className="completed">
                             {
-                                (completeQuestions.length == 0)
+                                completeQuestions.length === 0
                                     ?
                                     <h3>You did not answered any poll</h3>
                                     : <QuestionList

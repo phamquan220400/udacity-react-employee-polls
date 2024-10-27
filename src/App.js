@@ -56,9 +56,7 @@ function App() {
 
     return (
         <Routes>
-            <Route path="/" element={<Login/>}>
-                {" "}
-            </Route>
+            <Route path="/" element={<Login/>}></Route>
             <Route element={<Auth/>}>
                 <Route exact path="/home" element={<HomePage/>}/>
                 <Route exact path="/leaderboard" element={<LeaderBoard/>}/>
