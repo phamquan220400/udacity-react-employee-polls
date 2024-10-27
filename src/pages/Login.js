@@ -35,7 +35,7 @@ const Login = () => {
         API.login({username, password}).then(res => {
             if (res && res.data) {
                 dispatch(setAuth(res.data))
-                navigate(state.from?.pathname ?? '/home');
+                navigate(state?.from?.pathname ?? '/home');
             }
         }).catch(error => {
             setError(error.toString());
