@@ -24,7 +24,7 @@ describe("Render New Question Page success", () => {
         render(
             <BrowserRouter>
                 <Provider store={store}>
-                        <NewQuestion/>
+                    <NewQuestion/>
                 </Provider>
             </BrowserRouter>
         )
