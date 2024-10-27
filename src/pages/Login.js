@@ -14,6 +14,12 @@ const Login = () => {
     const navigate = useNavigate();
     const {state} = useLocation();
 
+    useEffect(() => {
+        if (auth && auth.user) {
+            navigate("/home");
+        }
+    }, []);
+
     const handleLogin = (e) => {
         e.preventDefault();
         setError('');
@@ -32,15 +38,9 @@ const Login = () => {
                 navigate(state.from.pathname ?? '/home');
             }
         }).catch(error => {
-            setError(error);
+            setError(error.toString());
         });
     };
-
-    useEffect(() => {
-        if (auth && auth.user) {
-            navigate("/home");
-        }
-    }, []);
 
     return (
         <div className="container mt-5">

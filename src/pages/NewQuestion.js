@@ -46,7 +46,7 @@ const NewQuestion = () => {
                 }
             })
             .catch(error => {
-                setMessage("Cannot create poll: " + error);
+                setMessage("Cannot create poll: " + error.toString());
             });
     }
 
